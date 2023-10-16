@@ -50,3 +50,19 @@ Route::prefix("dosen")->group(function() {
     });
 
 });
+
+    //Pertemuan View
+    Route::get('/dosen',function() {
+        return view('dosen');
+    });
+    Route::get('/dosen/index', function() {
+        return view('dosen.index');
+    });
+    Route::get('/fakultas',function(){
+     //   return view('fakultas.index',["Ilkom" =>"Fakultas Ilmu Komputer dan Rekayasa"]);
+     //return view('fakultas.index',["fakultas" =>["Fakultas Ilmu Komputer dan Rekayasa","Fakultas Ilmu Ekonomi"]]);
+    //return view('fakultas.index')->with("fakultas",["Fakultas Ilmu Komputer dan Rekayasa","Fakultas Ilmu Ekonomi"]);
+    $kampus = "Universitas Multi Data Palembang";
+    $fakultas = ["Fakultas Ilmu Komputer dan Rekayasa","Fakultas Ilmu Ekonomi"];
+    return view('fakultas.index',compact('fakultas','kampus'));
+    });
