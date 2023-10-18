@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\DosenController;
+use App\Http\Controllers\KurikulumController;
+use App\Http\Controllers\prodiController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -66,3 +69,10 @@ Route::prefix("dosen")->group(function() {
     $fakultas = ["Fakultas Ilmu Komputer dan Rekayasa","Fakultas Ilmu Ekonomi"];
     return view('fakultas.index',compact('fakultas','kampus'));
     });
+
+    Route::get('/prodi',[prodiController::class,"Index"]);
+
+    Route::resource('/kurikulum', KurikulumController::class);
+
+     Route::apiResource('/dosen', DosenController::class);   
+    
