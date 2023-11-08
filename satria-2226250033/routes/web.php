@@ -71,7 +71,7 @@ Route::prefix("dosen")->group(function() {
     return view('fakultas.index',compact('fakultas','kampus'));
     });
 
-    Route::get('/prodi',[prodiController::class,"Index"]);
+    //Route::get('/prodi',[prodiController::class,"Index"]);
 
     Route::resource('/kurikulum', KurikulumController::class);
 
@@ -81,3 +81,8 @@ Route::prefix("dosen")->group(function() {
     Route::get('/mahasiswa/update-elq', [MahasiswaController::class,'updateElq']);
     Route::get('/mahasiswa/delete-elq', [MahasiswaController::class,'deleteElq']);
     Route::get('/mahasiswa/select-elq', [MahasiswaController::class,'selectElq']);
+
+    Route ::get('/prodi/all-join-facade', [prodiController::class,'allJoinFacade']);
+    Route ::get('/prodi/all-join-Elq', [prodiController::class,'allJoinElq']);
+
+    Route::get('/prodi/create',[prodiController::class,'create']);
