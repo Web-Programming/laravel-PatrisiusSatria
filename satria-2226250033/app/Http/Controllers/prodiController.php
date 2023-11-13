@@ -9,8 +9,10 @@ use Illuminate\Support\Facades\DB;
 class prodiController extends Controller
 {
     public function index() {
-        $kampus = "Universitas Multi Data Palembang";
-        return view("prodi.index")->with("kampus",$kampus);
+       // $kampus = "Universitas Multi Data Palembang";
+    // return view("prodi.index")->with("kampus",$kampus);
+        $prodis = Prodi::all();
+        return view('prodi.index')->with('prodis',$prodis);
     }
     public function allJoinFacade() {
         $kampus = "Universitas Multi Data Palembang";
@@ -27,5 +29,42 @@ class prodiController extends Controller
            }
            echo"<hr";
         }
+    }
+    public function create() {
+        return view('prodi.create');
+    }
+    public function store(Request $request) {
+       // dump($request);
+       //echo $request -> nama;
+       $validateData = $request-> validate([
+        'nama' => 'required|min:5|max:20',
+       ]);
+       //dump ($validateData);
+       //echo $validateData['nama'];
+       $prodi = new Prodi();
+       $prodi->nama = $validateData['nama'];
+       $prodi -> save();
+
+       session()->flash('info',"Data prodi $prodi->nama berhasil disimpan ke database");
+       return redirect()->route('prodi.create');
+    }
+    public function update(Request $request,Prodi $prodi) {
+       // dump($request);
+       //echo $request -> nama;
+       $validateData = $request-> validate([
+        'nama' => 'required|min:5|max:20',
+       ]);
+       //dump ($validateData);
+       //echo $validateData['nama'];
+       Prodi::where('id', $prodi->id)->update($validateData);
+
+       session()->flash('info',"Data prodi $prodi->nama berhasil disimpan ke database");
+       return redirect()->route('prodi.index');
+    }
+    public function edit(Prodi $prodi) {
+        return view('prodi.edit',['prodi'=> $prodi]);
+    }
+    public function show(Prodi $prodi) {
+        return view('prodi.show',['prodi'=> $prodi]);
     }
 }

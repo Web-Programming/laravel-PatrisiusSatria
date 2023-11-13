@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
 </head>
 <body>
-    <h1>{{$kampus}}</h1>
-    <hr>
+    <div class="container">
     @yield('content')
     <hr>
     &copy: {{ date('Y') }} Universitas Multi Data Palembang
